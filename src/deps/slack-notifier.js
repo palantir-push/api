@@ -2,6 +2,10 @@
 const SlackWebhook = require('slack-webhook');
 
 module.exports = config => {
+  if(!config.slackWebhook){
+    return null;
+  }
+
   const slack = new SlackWebhook(config.slackWebhook, {
     defaults: {
       username: 'Palantir',

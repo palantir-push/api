@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
-const sessionsAPI = require('./sessions');
 const eventsAPI = require('./events');
+const usersAPI = require('./users');
+const jobsAPI = require('./jobs');
 const bodyParser = require('body-parser');
 
 module.exports = deps => {
@@ -10,8 +11,9 @@ module.exports = deps => {
   router.use(cors());
   router.use(bodyParser.json());
 
-  router.use('/sessions', sessionsAPI(deps));
   router.use('/events', eventsAPI(deps));
+  router.use('/users', usersAPI(deps));
+  router.use('/jobs', jobsAPI(deps));
 
   router.get('/', (req, res) => {
     res.send({status: 'API OK'});
