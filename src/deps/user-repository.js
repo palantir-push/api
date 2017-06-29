@@ -1,11 +1,9 @@
 const Redis = require('ioredis');
 
-module.exports = ({config}) => {
+module.exports = config => {
   const redis = new Redis(config.redisURL, {
     keyPrefix: 'user:'
   });
-
-  redis.set('n06867', JSON.stringify({test: 42}));
 
   return {
     set(userId, data) {
