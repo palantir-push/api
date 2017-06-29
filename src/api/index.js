@@ -6,7 +6,7 @@ module.exports = ({config}) => {
 
   router.use(cors());
   router.get('/', (req, res) => {
-    res.send('API OK');
+    res.send({status: 'API OK'});
   });
 
   return router;
