@@ -1,13 +1,16 @@
 const express = require('express');
 const app = express();
 const initApi = require('./api');
+const createDeps = require('./deps');
 
 const config = {
   port: process.env.PORT || 4000,
-  dummy: process.env.DUMMY
+  redisURL: process.env.REDIS_URL
 };
 
-app.use(initApi({config}));
+const deps = createDeps(config);
+
+app.use(initApi(deps));
 
 app.listen(config.port, function () {
   console.log(`API running on http://localhost:${config.port}`);

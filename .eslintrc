@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "nrk"
+  ],
+  "env": {
+    "node": true
+  },
+  "rules": {
+    "arrow-parens": [2, "as-needed"]
+  }
+}
