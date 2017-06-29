@@ -4,7 +4,7 @@ const SlackWebhook = require('slack-webhook');
 module.exports = config => {
   const slack = new SlackWebhook(config.slackWebhook, {
     defaults: {
-      username: 'Status Notifier',
+      username: 'Palantir',
       channel: config.slackChannel,
       icon_emoji: ':rocket:'
     }
