@@ -7,7 +7,8 @@ const config = {
   port: process.env.PORT || 4000,
   redisURL: process.env.REDIS_URL,
   slackWebhook: process.env.SLACK_WEBHOOK,
-  slackChannel: process.env.SLACK_CHANNEL
+  slackChannel: process.env.SLACK_CHANNEL,
+  gcmAPIKey: process.env.GCM_API_KEY
 };
 
 const deps = createDeps(config);

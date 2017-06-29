@@ -1,7 +1,7 @@
 const Redis = require('ioredis');
 
 module.exports = config => {
-  if(!config.redisURL){
+  if (!config.redisURL) {
     return null;
   }
 
@@ -15,7 +15,13 @@ module.exports = config => {
     },
     get(userId) {
       return redis.get(userId)
-        .then(JSON.parse);
+        .then(data => {
+          if (!data) {
+            return Promise.reject(new Error(`No data for id ${userId}`));
+          }
+
+          return JSON.parse(data);
+        });
     }
   };
 };
