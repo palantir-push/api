@@ -5,7 +5,7 @@ module.exports = ({slack}) => {
 
   router.post('/', (req, res) => {
     const body = req.body;
-    slack.send(JSON.stringify(body));
+    slack.send(`Wohoo! Fikk akkurat data fra Jarle! ${JSON.stringify(body)}`);
     res.send({received: body});
   });
 
