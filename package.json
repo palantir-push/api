@@ -11,6 +11,9 @@
     "node": "8.1.2"
   },
   "scripts": {
-    "start": "node src/index.js"
+    "start": "env $(cat .env) nodemon -w ./src src/index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }

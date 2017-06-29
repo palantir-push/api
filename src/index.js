@@ -4,6 +4,7 @@ const initApi = require('./api');
 
 const config = {
   port: process.env.PORT || 4000,
+  dummy: process.env.DUMMY
 };
 
 app.use(initApi({config}));
