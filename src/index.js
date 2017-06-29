@@ -6,7 +6,8 @@ const createDeps = require('./deps');
 const config = {
   port: process.env.PORT || 4000,
   redisURL: process.env.REDIS_URL,
-  slackWebhook: process.env.SLACK_WEBHOOK
+  slackWebhook: process.env.SLACK_WEBHOOK,
+  slackChannel: process.env.SLACK_CHANNEL
 };
 
 const deps = createDeps(config);
