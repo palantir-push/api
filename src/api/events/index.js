@@ -4,7 +4,8 @@ const express = require('express');
 module.exports = ({config, slack, eventRepository}) => {
   const router = new express.Router();
   const getURLPrefix = req => {
-    const port = (config.port === 80 || config.port === 443) ? '' : `:${config.port}`;
+    //const port = (config.port === 80 || config.port === 443) ? '' : `:${config.port}`;
+    const port = '';
     return `${req.protocol}://${req.hostname}${port}`;
   };
 
