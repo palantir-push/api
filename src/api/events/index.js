@@ -15,13 +15,11 @@ module.exports = ({config, slack, eventRepository, aws}) => {
     const {owner, jobId} = data;
     const jobURL = `${urlPrefix}/jobs/${jobId}`;
 
-    if (owner === 'n636205') {
-      aws.send({
-        TopicArn: `arn:aws:sns:eu-west-1:099317323916:${owner}`,
-        Message: 'Jobb fullført',
-        Subject: 'Palantir'
-      });
-    }
+    aws.publish({
+      TopicArn: `arn:aws:sns:eu-west-1:099317323916:${owner}`,
+      Message: 'Jobb fullført',
+      Subject: 'Palantir'
+    });
 
     slack.send(`Mottok jobb for ${owner}: ${jobURL}`);
 
