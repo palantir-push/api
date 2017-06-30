@@ -3,14 +3,20 @@ const express = require('express');
 module.exports = ({userRepository, eventRepository, webPush}) => {
   const router = new express.Router();
 
+
   router.post('/:userId', (req, res) => {
     const data = req.body;
-    if(!data.endpoint || !data.key || !data.authSecret){
+    if (!data.endpoint || !data.key || !data.authSecret) {
       return res.status(400).send('Error: Requires json with values endpoint, key and authSecret');
     }
 
     return userRepository.set(req.params.userId, data)
       .then(() => res.send('ok!'));
+  });
+
+  router.delete('/:userId', (req, res) => {
+    userRepository.remove(req.params.userId)
+      .then(() => res.send('ok'));
   });
 
   router.get('/:userId', (req, res) => {

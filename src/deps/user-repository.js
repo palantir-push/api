@@ -13,6 +13,9 @@ module.exports = config => {
     set(userId, data) {
       return redis.set(userId, JSON.stringify(data));
     },
+    remove(userId) {
+      return redis.del(userId);
+    },
     get(userId) {
       return redis.get(userId)
         .then(data => {
