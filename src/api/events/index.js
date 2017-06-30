@@ -1,7 +1,7 @@
 const express = require('express');
 
 
-module.exports = ({config, slack, eventRepository}) => {
+module.exports = ({config, slack, eventRepository, aws}) => {
   const router = new express.Router();
   const getURLPrefix = req => {
     //const port = (config.port === 80 || config.port === 443) ? '' : `:${config.port}`;
@@ -15,7 +15,16 @@ module.exports = ({config, slack, eventRepository}) => {
     const {owner, jobId} = data;
     const jobURL = `${urlPrefix}/jobs/${jobId}`;
 
+    if (owner === 'n636205') {
+      aws.send({
+        TopicArn: `arn:aws:sns:eu-west-1:099317323916:${owner}`,
+        Message: 'Jobb fullført',
+        Subject: 'Palantir'
+      });
+    }
+
     slack.send(`Mottok jobb for ${owner}: ${jobURL}`);
+
     eventRepository.add(jobId, owner, data)
       .then(() => {
         res.send({
