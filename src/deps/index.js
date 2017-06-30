@@ -10,7 +10,7 @@ module.exports = config => {
     userRepository: createUserRepository(config),
     eventRepository: createEventRepository(config),
     slack: createSlackNotifier(config),
-    webPush: createWebPush(config)
+    webPush: createWebPush(config),
     aws: createAwsNotifier(config)
   };
 };

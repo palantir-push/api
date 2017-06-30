@@ -1,6 +1,9 @@
 const webPush = require('web-push');
 
 module.exports = config => {
+  if(!config.gcmAPIKey) {
+    return null;
+  }
   webPush.setGCMAPIKey(config.gcmAPIKey);
 
   return {

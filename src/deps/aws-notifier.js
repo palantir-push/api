@@ -2,6 +2,9 @@
 const AWS = require('aws-sdk');
 
 module.exports = config => {
+  if(!config.awsConfig.region) {
+      return null;
+  }
   var sns = new AWS.SNS(config.awsConfig);
   return {
       send(params) {
