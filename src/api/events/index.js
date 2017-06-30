@@ -1,7 +1,7 @@
 const express = require('express');
 
 
-module.exports = ({config, slack, eventRepository, aws}) => {
+module.exports = ({config, slack, eventRepository, aws, webPush, userRepository}) => {
   const router = new express.Router();
   const getURLPrefix = req => {
     //const port = (config.port === 80 || config.port === 443) ? '' : `:${config.port}`;
@@ -22,6 +22,9 @@ module.exports = ({config, slack, eventRepository, aws}) => {
     });
 
     slack.send(`Mottok jobb for ${owner}: ${jobURL}`);
+
+    userRepository.get(owner)
+      .then(userData => webPush.sendNotification(userData, data));
 
     eventRepository.add(jobId, owner, data)
       .then(() => {
