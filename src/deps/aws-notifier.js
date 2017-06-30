@@ -7,13 +7,17 @@ module.exports = config => {
   }
   var sns = new AWS.SNS(config.awsConfig);
   return {
-      send(params) {
+      publish(params) {
           sns.publish(params, function(err,data){
-              if (err) {
-                  console.log('Error sending a message', err);
-              } else {
-                  console.log('Sent message:', data.MessageId);
-              }
+              if (err) console.log('Error sending a message', err);
+              else console.log('Sent message:', data.MessageId);
+          });
+      },
+
+      createTopic(params) {
+          sns.createTopic(params, function(err, data) {
+              if (err) console.log(err, err.stack);
+              else     console.log(data);
           });
       }
   };
